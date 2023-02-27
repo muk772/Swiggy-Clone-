@@ -1,0 +1,11 @@
+.nav-items > ul {
+  list-style-type: none;
+  display: flex;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+ul > li {
+  padding: 15px;
+}
