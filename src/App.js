@@ -10,15 +10,6 @@ function App() {
       <Header />
       <Body />
       <Footer />
-      {/* 
-
-      --Header
-      --Body
-          -Search box
-          -resturant card
-        
-      --Footer
-       */}
     </div>
   );
 }
