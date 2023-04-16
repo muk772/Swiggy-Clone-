@@ -9,10 +9,14 @@ const Header = () => {
         <h2>Food Quest</h2>
         <div className="nav-items">
           <ul>
-            <li>{/* <Link to={"/home"}>Home</Link> */}</li>
+            <li><Link to={"/"}>Home</Link></li>
 
-            <li>About</li>
-            <li>Contact</li>
+            <li>
+              <Link to={"/aboutus"}>About us</Link>
+            </li>
+            <li>
+              <Link to={"/contact"}>Contact</Link>
+            </li>
           </ul>
         </div>
       </div>

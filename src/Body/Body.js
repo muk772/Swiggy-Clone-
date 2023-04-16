@@ -11,17 +11,15 @@ const Cards = (props) => (
 
       <p className="card-text">{props.desc}</p>
       <p className="card-text">{props.ratings}</p>
-      {/* <a href={props.link} className="btn btn-primary">
+      <a href={props.link} className="btn btn-primary">
         {props.linkText}
-      </a> */}
+      </a>
     </div>
   </div>
 );
 
 //Filtering data for search
 function filterData(searchText, resturantsList) {
-  console.log("Resturant list inside filter data", resturantsList);
-  console.log("Inside filter dtata", searchText);
   const filterdata = resturantsList.filter((resturantsList) =>
     resturantsList.data.name.toLowerCase().includes(searchText)
   );
@@ -40,14 +38,15 @@ const Body = () => {
 
   useEffect(() => {
     resturantsData();
+    console.log("isnide useeffect");
   }, []);
 
   async function resturantsData() {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.9906483&lng=77.65620849999999&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.6118405&lng=85.1525092&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log("Json data", json);
+    // console.log("Json data", json);
     setFilterResturantsList(json?.data?.cards[2]?.data?.data?.cards);
     setAllResturants(json?.data?.cards[2]?.data?.data?.cards);
     // console.log("------------", json?.data?.cards[3]?.data?.data?.cards);
@@ -58,6 +57,7 @@ const Body = () => {
   return (
     <>
       {/* {Input field for search text} */}
+      {console.log("Inside function")}
       <input
         type="text"
         onChange={(e) => setSearchText(e.target.value)}
@@ -109,6 +109,8 @@ const Body = () => {
                       desc={curelem.data.cuisines.join(", ")}
                       ratings={curelem.data.avgRating + "*"}
                       key={curelem.data.id}
+                      linkText={"View Resturant"}
+                      link={"/resturant/" + curelem.data.id}
                     />
                   </div>
                 </div>
