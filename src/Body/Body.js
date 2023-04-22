@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import "./Body.css";
 import Shimmer from "./Shimmer";
+import useOnline from "../useOnline";
 
 const Cards = (props) => (
   <div className="card" style={{ width: "18rem" }}>
@@ -53,6 +54,13 @@ const Body = () => {
   }
 
   console.log("resturants", filterResturantsList);
+
+  const online = useOnline();
+  
+  console.log("Onleine______--------", online);
+  if (!online) {
+    return <h2>Oops you are offline</h2>;
+  }
 
   return (
     <>
