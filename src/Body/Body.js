@@ -50,13 +50,15 @@ const Body = () => {
     // console.log("Json data", json);
     setFilterResturantsList(json?.data?.cards[2]?.data?.data?.cards);
     setAllResturants(json?.data?.cards[2]?.data?.data?.cards);
+    console.log(json?.data?.cards[0]?.data?.data?.cards);
+    console.log(json?.data?.cards[2]?.data?.data?.cards);
     // console.log("------------", json?.data?.cards[3]?.data?.data?.cards);
   }
 
   console.log("resturants", filterResturantsList);
 
   const online = useOnline();
-  
+
   console.log("Onleine______--------", online);
   if (!online) {
     return <h2>Oops you are offline</h2>;
@@ -81,6 +83,7 @@ const Body = () => {
       >
         Search
       </button>
+
       {allResturants.length == 0 ? (
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 ">
           {Array(10)
