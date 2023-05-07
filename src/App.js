@@ -6,14 +6,23 @@ import Body from "./Body/Body";
 import Footer from "./Footer/Footer";
 import Aboutus from "./Header/Aboutus";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState } from "react";
+import UserContext from "./Utils/UserContext";
 
 function App() {
+  const [user, setUser] = useState({
+    name: "mukund madhav",
+    email: "muk772@gmail.com",
+  });
   return (
     <div className="App">
       <>
-        <Header />
-        <Outlet />
-        <Footer />
+        <UserContext.Provider value={{ user: user, setUser: setUser }}>
+          <Header />
+
+          <Outlet />
+          <Footer />
+        </UserContext.Provider>
       </>
     </div>
   );

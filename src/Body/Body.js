@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import "./Body.css";
 import Shimmer from "./Shimmer";
 import useOnline from "../useOnline";
+import userContext from "../Utils/UserContext";
 
 const Cards = (props) => (
   <div className="card" style={{ width: "18rem" }}>
@@ -12,6 +13,8 @@ const Cards = (props) => (
 
       <p className="card-text">{props.desc}</p>
       <p className="card-text">{props.ratings}</p>
+      <p className="card-text">{props.userName}</p>
+
       <a href={props.link} className="btn btn-primary">
         {props.linkText}
       </a>
@@ -34,6 +37,7 @@ const Body = () => {
   const [allResturants, setAllResturants] = useState([]);
   //Search text to be searched
   const [searchText, setSearchText] = useState("");
+  const { user, setUser } = useContext(userContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -83,6 +87,16 @@ const Body = () => {
       >
         Search
       </button>
+      <input
+        type="text"
+        onChange={(e) =>
+          setUser({
+            name: e.target.value,
+            email: "xyz@gmail.com",
+          })
+        }
+        value={user.name}
+      />
 
       {allResturants.length == 0 ? (
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 ">
@@ -122,6 +136,7 @@ const Body = () => {
                       key={curelem.data.id}
                       linkText={"View Resturant"}
                       link={"/resturant/" + curelem.data.id}
+                      userName={user.name + user.email}
                     />
                   </div>
                 </div>
