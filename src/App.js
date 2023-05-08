@@ -17,9 +17,9 @@ function App() {
   return (
     <div className="App">
       <>
-        <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        
           <Header />
-
+          <UserContext.Provider value={{ user: user, setUser: setUser }}>
           <Outlet />
           <Footer />
         </UserContext.Provider>
