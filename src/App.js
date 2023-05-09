@@ -8,6 +8,8 @@ import Aboutus from "./Header/Aboutus";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState } from "react";
 import UserContext from "./Utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./Utils/Store";
 
 function App() {
   const [user, setUser] = useState({
@@ -16,14 +18,14 @@ function App() {
   });
   return (
     <div className="App">
-      <>
-        
+      <Provider store={store}>
+        <UserContext.Provider value={{ user: user, setUser: setUser }}>
           <Header />
-          <UserContext.Provider value={{ user: user, setUser: setUser }}>
+
           <Outlet />
           <Footer />
         </UserContext.Provider>
-      </>
+      </Provider>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import Error from "./Error";
 import Body from "./Body/Body";
 import ResturantMenu from "./ResturantMenu";
 import Shimmer from "./Body/Shimmer";
+import Cart from "./Header/Cart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -40,6 +41,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/resturant/:id",
         element: <ResturantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
