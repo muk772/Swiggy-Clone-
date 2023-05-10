@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FoodItem from "../Utils/FoodItem";
 import { clearCart } from "../Utils/cartSlice";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+  const [cartToltal, setCartTotal] = useState();
 
   const dispatch = useDispatch();
 
   const handleClearCart = () => {
+    setCartTotal(0);
     dispatch(clearCart());
+  };
+
+  useEffect(() => {
+    totalPrice();
+  }, [cartItems.length]);
+
+  const totalPrice = () => {
+    let price = 0;
+    for (var i = 0; i < cartItems.length; i++) {
+      price = price + cartItems[i].price;
+      setCartTotal(price / 100);
+    }
+  };
+
+  const handleCheckoutCart = () => {
+    alert("The price is " + cartToltal);
   };
 
   console.log(cartItems);
@@ -34,11 +52,11 @@ const Cart = () => {
       </button>
 
       <button
-        className="btn btn-danger"
+        className="btn btn-warning"
         style={{ marginTop: "20px", marginLeft: "50px" }}
-        onClick={() => handleClearCart()}
+        onClick={() => handleCheckoutCart()}
       >
-        Checkout
+        Pay ₹{cartToltal}
       </button>
     </>
   );
